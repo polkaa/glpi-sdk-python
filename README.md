@@ -49,10 +49,9 @@ You should enable the GLPI API and generate an App Token.
 Please, export these environments variables with yours config:
 
   ```bash
-  export username = "GLPI_USER"
-  export password = "GLPI_USER"
-  export url = 'http://glpi.example.com/apirest.php'
-  export glpi_app_token = "GLPI_API_TOKEN"
+  export GLPI_API_URL = 'http://glpi.example.com/apirest.php'
+  export GLPI_APP_TOKEN = <GLPI_APP_TOKEN>
+  export GLPI_AUTH_TOKEN = <GLPI_AUTH_TOKEN>
   ```
 
 Then import it in your script and create a `glpi` API connection:
@@ -62,11 +61,10 @@ Then import it in your script and create a `glpi` API connection:
   from glpi import GLPI
 
   url = os.getenv("GLPI_API_URL") or None
-  user = os.getenv("GLPI_USERNAME") or None
-  password = os.getenv("GLPI_PASSWORD") or None
-  token = os.getenv("GLPI_APP_TOKEN") or None
+  app_token = os.getenv("GLPI_APP_TOKEN") or None
+  auth_token = os.getenv("GLPI_AUTH_TOKEN") or None
 
-  glpi = GLPI(url, token, (user, password))
+  glpi = GLPI(url, app_token, auth_token)
   glpi.kill() #Destroy a session identified by a session token
   ```
 
